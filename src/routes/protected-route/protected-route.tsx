@@ -20,9 +20,7 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute:FC<ProtectedRouteProps> = ({needAuth, redirectUrl, children}) => {
-  const dispatch = useAppDispatch()
-
-  const {isError, isLoading, user} = useAppSelector(state => state.user)
+  const {isError, user} = useAppSelector(state => state.user)
 
   if (!user && !isError) {
     return (<Loader/>)

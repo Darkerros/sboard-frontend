@@ -1,4 +1,4 @@
-import axios, {AxiosRequestConfig, InternalAxiosRequestConfig} from 'axios';
+import axios, { InternalAxiosRequestConfig } from 'axios';
 import {getAccessToken} from "../utils/token-storage";
 
 const BASE_API_URL = 'http://localhost:5000'
