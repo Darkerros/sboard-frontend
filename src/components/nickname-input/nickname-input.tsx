@@ -1,4 +1,4 @@
-import React, {ChangeEvent, ChangeEventHandler, FC, memo, useCallback} from 'react';
+import React, { ChangeEvent, FC, memo, useCallback } from 'react';
 import Input from "ui/input/input";
 
 
