@@ -19,7 +19,7 @@ const InputComponent = styled.input`
 type InputAttr = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 interface InputProps extends InputAttr {
-  type: 'text' | 'number' | 'email';
+  type: 'text' | 'number' | 'email' | 'password';
 }
 
 const Input:FC<InputProps> = (props) => {
