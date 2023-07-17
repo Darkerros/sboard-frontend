@@ -1,10 +1,10 @@
 import React, { FC, FormEvent, useCallback, useState } from 'react';
 import { styled } from "styled-components";
-import FormTitle from "components/form-title/form-title";
-import NicknameInput from "components/nickname-input/nickname-input";
-import EmailInput from "components/email-input/email-input";
-import PasswordInput from "components/password-input/password-input";
-import Button from "ui/button/button";
+import FormTitle from "../../../../components/form-title/form-title";
+import NicknameInput from "../../../../components/nickname-input/nickname-input";
+import EmailInput from "../../../../components/email-input/email-input";
+import PasswordInput from "../../../../components/password-input/password-input";
+import Button from "../../../../ui/button/button";
 
 const RegisterFormComponent = styled.form`
   min-width: 260px;

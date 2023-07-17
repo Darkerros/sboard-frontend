@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, memo, useCallback } from 'react';
-import Input from "ui/input/input";
+import Input from "../../ui/input/input";
 
 interface PasswordInputInputProps {
   onChange: (value: string) => void;
