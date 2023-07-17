@@ -23,6 +23,7 @@
     "paths": {
       "components/*": ["components/*"],
       "modules/*": ["modules/*"],
+      "api/*": ["api/*"],
       "services/*": ["services/*"],
       "ui/*": ["ui/*"],
     }
