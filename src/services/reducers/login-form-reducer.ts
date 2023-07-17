@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {loginUserThunk} from "../thunks/loginUserThunk";
+import {loginUserThunk} from "../thunks/login-user-thunk";
 
 interface LoginFormReducerState {
   /*

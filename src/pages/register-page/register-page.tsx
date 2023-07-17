@@ -1,9 +1,10 @@
 import {RegisterForm} from "../../modules/register-form";
 import {useAppDispatch} from "../../hooks/use-app-dispatch";
-import {registrateUserThunk} from "../../services/thunks/registrateUserThunk";
+import {registrateUserThunk} from "../../services/thunks/registrate-user-thunk";
 import {useAppSelector} from "../../hooks/use-app-selector";
 import {setAccessToken, setRefreshToken} from "../../utils/token-storage";
 import {useNavigate} from "react-router-dom";
+import {userActions} from "../../services/reducers/user-reducer";
 
 const RegisterPage = () => {
   const dispatch = useAppDispatch()
@@ -17,7 +18,7 @@ const RegisterPage = () => {
         const { accessToken, refreshToken, ...user  } = registerUserData;
         setRefreshToken(refreshToken);
         setAccessToken(accessToken);
-
+        dispatch(userActions.setUser(user))
         navigate('/')
       })
       .catch(() => {})

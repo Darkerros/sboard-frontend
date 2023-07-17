@@ -5,7 +5,8 @@ import {useNavigate} from "react-router-dom";
 import {useAppSelector} from "../../hooks/use-app-selector";
 import {setAccessToken, setRefreshToken} from "../../utils/token-storage";
 import {ILoginUserParams} from "../../api/auth-api/auth-api";
-import {loginUserThunk} from "../../services/thunks/loginUserThunk";
+import {loginUserThunk} from "../../services/thunks/login-user-thunk";
+import {userActions} from "../../services/reducers/user-reducer";
 
 const LoginPage = () => {
   const dispatch = useAppDispatch()
@@ -19,7 +20,7 @@ const LoginPage = () => {
         const { accessToken, refreshToken, ...user  } = loginUserData;
         setRefreshToken(refreshToken);
         setAccessToken(accessToken);
-
+        dispatch(userActions.setUser(user))
         navigate('/')
       })
       .catch(() => {})

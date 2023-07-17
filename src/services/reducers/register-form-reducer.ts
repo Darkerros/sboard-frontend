@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {registrateUserThunk} from "../thunks/registrateUserThunk";
+import {registrateUserThunk} from "../thunks/registrate-user-thunk";
 
 interface RegisterFormReducerState {
   /*
