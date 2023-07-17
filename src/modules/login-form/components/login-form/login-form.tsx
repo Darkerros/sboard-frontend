@@ -4,6 +4,7 @@ import FormTitle from "../../../../components/form-title/form-title";
 import EmailInput from "../../../../components/email-input/email-input";
 import PasswordInput from "../../../../components/password-input/password-input";
 import Button from "../../../../ui/button/button";
+import {ILoginUserParams} from "../../../../api/auth-api/auth-api";
 
 const LoginFormComponent = styled.form`
   min-width: 260px;
@@ -40,17 +41,13 @@ const ErrorMessageComponent = styled.p`
   max-width: 200px;
 `
 
-interface OnSubmitLoginFormParams {
-  email: string;
-  password: string;
-}
-
 interface LoginFormProps {
-  onSubmit: ({ email, password }:OnSubmitLoginFormParams) => void;
-  error?: string | null;
+  onSubmit: ({ email, password }:ILoginUserParams) => void;
+  loginError?: string | null;
+  validationError: Record<string, string>;
 }
 
-const LoginForm:FC<LoginFormProps> = ({ onSubmit, error}) => {
+const LoginForm:FC<LoginFormProps> = ({ onSubmit, loginError, validationError}) => {
   const [email, setEmail] = useState<string>('')
   const handleEmailChange = useCallback((value: string) => setEmail(value), [])
 
@@ -70,9 +67,11 @@ const LoginForm:FC<LoginFormProps> = ({ onSubmit, error}) => {
       <FormTitle>Авторизация</FormTitle>
       <InputsFieldSet>
         <EmailInput onChange={handleEmailChange} value={email}/>
+        {validationError['email'] && <ErrorMessageComponent>{validationError['email']}</ErrorMessageComponent>}
         <PasswordInput onChange={handlePasswordChange} value={password}/>
+        {validationError['password'] && <ErrorMessageComponent>{validationError['password']}</ErrorMessageComponent>}
       </InputsFieldSet>
-      {error && <ErrorMessageComponent>{error}</ErrorMessageComponent>}
+      {loginError && <ErrorMessageComponent>{loginError}</ErrorMessageComponent>}
       <Button className="register-form__submitButton" type='submit'>Войти</Button>
     </LoginFormComponent>
   );
