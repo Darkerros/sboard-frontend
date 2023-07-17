@@ -49,10 +49,11 @@ interface OnSubmitRegisterFormParams {
 
 interface RegisterFormProps {
   onSubmit: ({ nickname, email, password }:OnSubmitRegisterFormParams) => void;
-  error?: string | null;
+  registerError?: string | null;
+  validationError: Record<string, string>;
 }
 
-const RegisterForm:FC<RegisterFormProps> = ({ onSubmit, error}) => {
+const RegisterForm:FC<RegisterFormProps> = ({ onSubmit, validationError, registerError}) => {
   const [nickname, setNickname] = useState<string>('')
   const handleNicknameChange = useCallback((value: string) => setNickname(value), [])
 
@@ -76,10 +77,13 @@ const RegisterForm:FC<RegisterFormProps> = ({ onSubmit, error}) => {
       <FormTitle>Регистрация</FormTitle>
       <InputsFieldSet>
         <NicknameInput onChange={handleNicknameChange} value={nickname}/>
+        {validationError['nickname'] && <ErrorMessageComponent>{validationError['nickname']}</ErrorMessageComponent>}
         <EmailInput onChange={handleEmailChange} value={email}/>
+        {validationError['email'] && <ErrorMessageComponent>{validationError['email']}</ErrorMessageComponent>}
         <PasswordInput onChange={handlePasswordChange} value={password}/>
+        {validationError['password'] && <ErrorMessageComponent>{validationError['password']}</ErrorMessageComponent>}
       </InputsFieldSet>
-      {error && <ErrorMessageComponent>{error}</ErrorMessageComponent>}
+      {registerError && <ErrorMessageComponent>{registerError}</ErrorMessageComponent>}
       <Button className="register-form__submitButton" type='submit'>Зарегистрироваться</Button>
     </RegisterFormComponent>
   );
