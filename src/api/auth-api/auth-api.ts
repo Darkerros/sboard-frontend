@@ -4,7 +4,7 @@ import {RegisterUserResponse} from "./responses/register-user-response";
 import {LoginUserResponse} from "./responses/login-user-response";
 import {UpdateTokenResponse} from "./responses/update-token-response";
 
-interface IRegisterUserParams {
+export interface IRegisterUserParams {
   /*
    * Никнейм пользователя при регистрации
    */
@@ -19,7 +19,7 @@ interface IRegisterUserParams {
   password: string;
 }
 
-interface ILoginUserParams {
+export interface ILoginUserParams {
   /*
    * Почта пользователя для авторизации
    */
