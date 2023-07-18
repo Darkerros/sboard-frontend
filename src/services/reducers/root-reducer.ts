@@ -3,10 +3,14 @@ import {registerFormReducer} from "./register-form-reducer";
 import {loginFormReducer} from "./login-form-reducer";
 import {userReducer} from "./user-reducer";
 import {postsReducer} from "./posts-reducer";
+import {createPostModalReducer} from "./create-post-modal-reducer";
+import {updatePostModalReducer} from "./update-post-modal-reducer";
 
 export const rootReducer = combineReducers({
-  registerForm: registerFormReducer,
-  loginForm: loginFormReducer,
   user: userReducer,
-  posts: postsReducer
+  posts: postsReducer,
+  loginForm: loginFormReducer,
+  registerForm: registerFormReducer,
+  updatePostModal: updatePostModalReducer,
+  createPostModal: createPostModalReducer,
 });

@@ -2,6 +2,7 @@ import createApiReguest from "../create-api-reguest";
 import {API_REQUEST_METHOD} from "../types/api-reguest-method";
 import {GetPostResponse} from "./responses/get-post-response";
 import {CreatePostResponse} from "./responses/create-post-response";
+import {UpdatePostResponse} from "./responses/update-post-response";
 
 export interface ICreatePostParams {
   /*
@@ -18,7 +19,7 @@ export interface IUpdatePostParams {
   /*
    * Идентификатор статьи которую обновляем
    */
-  postId: string;
+  postId: number;
   /*
    * Название статьи
    */
@@ -47,7 +48,7 @@ export const createPost = async (postData: ICreatePostParams): Promise<CreatePos
   })
 }
 
-export const updatePost = async (postData: IUpdatePostParams): Promise<CreatePostResponse> => {
+export const updatePost = async (postData: IUpdatePostParams): Promise<UpdatePostResponse> => {
   return await createApiReguest('/post/update',API_REQUEST_METHOD.POST, {
     data: {
       ...postData
@@ -55,6 +56,6 @@ export const updatePost = async (postData: IUpdatePostParams): Promise<CreatePos
   })
 }
 
-export const deletePost = async (postId: number): Promise<CreatePostResponse> => {
+export const deletePost = async (postId: number): Promise<any> => {
   return await createApiReguest(`/post/${postId}`,API_REQUEST_METHOD.DELETE)
 }
