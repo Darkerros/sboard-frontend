@@ -1,5 +1,4 @@
 import React, { FC, ReactNode } from 'react';
-import {useAppDispatch} from "../../hooks/use-app-dispatch";
 import {useAppSelector} from "../../hooks/use-app-selector";
 import {Navigate} from "react-router-dom";
 import Loader from "../../components/loader/loader";

@@ -6,7 +6,6 @@ export const getPostsNextPage = createAsyncThunk(
   'getPostsNExtPage',
   (data,{ getState }) => {
     const { posts: {
-      isHaveNextPage,
       currentPage
     }} = getState() as RootState;
 
