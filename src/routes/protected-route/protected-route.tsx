@@ -25,7 +25,7 @@ const ProtectedRoute:FC<ProtectedRouteProps> = ({needAuth, redirectUrl, children
     return (<Loader/>)
   }
 
-  if (!user && !needAuth || user && needAuth || isError && !needAuth) {
+  if ((!user && !needAuth) || (user && needAuth) || (isError && !needAuth)) {
     return (<>{children}</>)
   }
 
