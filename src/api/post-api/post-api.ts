@@ -3,6 +3,32 @@ import {API_REQUEST_METHOD} from "../types/api-reguest-method";
 import {GetPostResponse} from "./responses/get-post-response";
 import {CreatePostResponse} from "./responses/create-post-response";
 
+export interface ICreatePostParams {
+  /*
+   * Название статьи
+   */
+  title: string;
+  /*
+   * Описание статьи
+   */
+  description: string | null;
+}
+
+export interface IUpdatePostParams {
+  /*
+   * Идентификатор статьи которую обновляем
+   */
+  postId: string;
+  /*
+   * Название статьи
+   */
+  title: string;
+  /*
+   * Описание статьи
+   */
+  description: string | null;
+}
+
 export const getPosts = async (query?: string, limit?: number, page?: number): Promise<GetPostResponse> => {
   return await createApiReguest('/post/list',API_REQUEST_METHOD.GET, {
     params: {
@@ -13,7 +39,7 @@ export const getPosts = async (query?: string, limit?: number, page?: number): P
   })
 }
 
-export const createPost = async (postData: { title: string, description: string | null }): Promise<CreatePostResponse> => {
+export const createPost = async (postData: ICreatePostParams): Promise<CreatePostResponse> => {
   return await createApiReguest('/post/create',API_REQUEST_METHOD.POST, {
     data: {
       ...postData
@@ -21,7 +47,7 @@ export const createPost = async (postData: { title: string, description: string 
   })
 }
 
-export const updatePost = async (postData: { postId: number ,title: string, description: string | null }): Promise<CreatePostResponse> => {
+export const updatePost = async (postData: IUpdatePostParams): Promise<CreatePostResponse> => {
   return await createApiReguest('/post/update',API_REQUEST_METHOD.POST, {
     data: {
       ...postData
