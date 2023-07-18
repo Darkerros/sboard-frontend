@@ -2,6 +2,8 @@ import {PostResource} from "../../api/resources/post-resource";
 import {createSlice} from "@reduxjs/toolkit";
 import {getPostsThunk} from "../thunks/get-post-thunk";
 import {getPostsNextPage} from "../thunks/get-posts-next-page";
+import {deletePostThunk} from "../thunks/delete-post-thunk";
+import {updatePostThunk} from "../thunks/update-post-thunk";
 
 interface PostsReducerState {
   posts: PostResource[];
@@ -34,8 +36,15 @@ const postsSlice = createSlice({
       })
       .addCase(getPostsNextPage.fulfilled, (state, action) => {
         state.currentPage++;
-        state.posts.push(...action.payload.posts)
+        state.posts.push(...action.payload.posts);
         state.isHaveNextPage = state.currentPage < state.pagesCount;
+      })
+      .addCase(deletePostThunk.fulfilled, (state, action) => {
+        state.posts = state.posts.filter(post => post.id !== action.meta.arg);
+      })
+      .addCase(updatePostThunk.fulfilled, (state, action) => {
+        const postUpdateIndex = state.posts.findIndex(post => post.id === action.payload.id);
+        state.posts.splice(postUpdateIndex, 1, action.payload);
       })
   }
 })
