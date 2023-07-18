@@ -6,6 +6,7 @@ const ButtonComponent = styled.button`
   
   width: fit-content;
   
+  color: white;
   font-size: 10px;
   font-weight: bold;
   text-transform: uppercase;
