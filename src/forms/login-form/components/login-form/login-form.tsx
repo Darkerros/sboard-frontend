@@ -7,6 +7,7 @@ import Button from '../../../../ui/button/button';
 import FormTitle from '../../../../components/form-title/form-title';
 import EmailInput from '../../../../controls/email-input/email-input';
 import PasswordInput from '../../../../controls/password-input/password-input';
+import { Link } from 'react-router-dom';
 
 const LoginFormComponent = styled.form`
   min-width: 260px;
@@ -38,6 +39,18 @@ const ErrorMessageComponent = styled.p`
   color: red;
   font-size: 12px;
   text-align: center;
+
+  margin: 0 auto;
+  max-width: 200px;
+`;
+
+const OtherFormLinkContainer = styled.p`
+  color: black;
+  font-size: 12px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
 
   margin: 0 auto;
   max-width: 200px;
@@ -82,6 +95,10 @@ const LoginForm: FC<LoginFormProps> = ({ onSubmit, loginError, validationError }
         <PasswordInput onChange={handlePasswordChange} value={password} />
         {validationError['password'] && <ErrorMessageComponent>{validationError['password']}</ErrorMessageComponent>}
       </InputsFieldSet>
+      <OtherFormLinkContainer>
+        Еще не зарегистрированы?
+        <Link to={'/register'}>Зарегистрироваться</Link>
+      </OtherFormLinkContainer>
       {loginError && <ErrorMessageComponent>{loginError}</ErrorMessageComponent>}
       <Button className='register-form__submitButton' type='submit'>Войти</Button>
     </LoginFormComponent>

@@ -8,6 +8,7 @@ import FormTitle from '../../../../components/form-title/form-title';
 import NicknameInput from '../../../../controls/nickname-input/nickname-input';
 import EmailInput from '../../../../controls/email-input/email-input';
 import PasswordInput from '../../../../controls/password-input/password-input';
+import { Link } from 'react-router-dom';
 
 const RegisterFormComponent = styled.form`
   min-width: 260px;
@@ -40,6 +41,18 @@ const ErrorMessageComponent = styled.p`
   font-size: 12px;
   text-align: center;
 
+  margin: 0 auto;
+  max-width: 200px;
+`;
+
+const OtherFormLinkContainer = styled.p`
+  color: black;
+  font-size: 12px;
+  text-align: center;
+  
+  display: flex;
+  flex-direction: column;
+  
   margin: 0 auto;
   max-width: 200px;
 `;
@@ -89,6 +102,10 @@ const RegisterForm: FC<RegisterFormProps> = ({ onSubmit, validationError, regist
         <PasswordInput onChange={handlePasswordChange} value={password} />
         {validationError['password'] && <ErrorMessageComponent>{validationError['password']}</ErrorMessageComponent>}
       </InputsFieldSet>
+      <OtherFormLinkContainer>
+        Уже зарегистрированы?
+        <Link to={'/login'}>Войти</Link>
+      </OtherFormLinkContainer>
       {registerError && <ErrorMessageComponent>{registerError}</ErrorMessageComponent>}
       <Button className='register-form__submitButton' type='submit'>Зарегистрироваться</Button>
     </RegisterFormComponent>
