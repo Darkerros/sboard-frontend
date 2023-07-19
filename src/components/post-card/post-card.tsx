@@ -1,6 +1,8 @@
 import React, {FC, memo} from 'react';
 import {styled} from "styled-components";
+
 import {PostResource} from "../../api/resources/post-resource";
+
 import TrashIcon from "../../ui/icon/trash-icon/trash-icon";
 import EditIcon from "../../ui/icon/edit-icon/edit-icon";
 
@@ -15,15 +17,17 @@ const PostCardComponent = styled.div`
   flex-direction: column;
 `
 
-const PostCardTitle = styled.p`
-  font-size: 14px;
-  text-align: start;
-  font-weight: bold;
-
+const PostCardHead = styled.div`
   gap: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+
+const PostCardTitle = styled.p`
+  font-size: 14px;
+  text-align: start;
+  font-weight: bold;
 `
 
 const PostCardDescription = styled.p`
@@ -57,6 +61,7 @@ const PostCardActionContainer = styled.p`
   display: flex;
   justify-content: space-between;
 `
+
 const PostCardActionButton = styled.button`
   padding: 5px 5px;
   
@@ -80,8 +85,17 @@ const PostCardActionButton = styled.button`
 `
 
 interface PostCardProps {
+  /*
+   * Данные поста, который отображаем
+   */
   post: PostResource;
+  /*
+   * Колбек срабатывающий при клики на кнопку удаления
+   */
   onDelete: (post: PostResource) => void;
+  /*
+   * Колбек срабатывающий при клики на кнопку редактирования
+   */
   onEdit: (post: PostResource) => void;
 }
 
@@ -91,8 +105,10 @@ const PostCard:FC<PostCardProps> = memo(({post, onDelete, onEdit}) => {
 
   return (
     <PostCardComponent>
-      <PostCardTitle>
-        {post.title}
+      <PostCardHead>
+        <PostCardTitle>
+          {post.title}
+        </PostCardTitle>
         <PostCardActionContainer>
           <PostCardActionButton onClick={handleClickDelete}>
             <TrashIcon/>
@@ -101,7 +117,7 @@ const PostCard:FC<PostCardProps> = memo(({post, onDelete, onEdit}) => {
             <EditIcon/>
           </PostCardActionButton>
         </PostCardActionContainer>
-      </PostCardTitle>
+      </PostCardHead>
       <PostCardDescription>{post.description}</PostCardDescription>
       <PostCardCreator>Создан: {String(post.createByUser.email)}</PostCardCreator>
       <PostCardLastEdited>Последний раз обновлен: {String(post.lastUpdateByUser.email)}</PostCardLastEdited>

@@ -1,6 +1,8 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {PostResource} from "../../api/resources/post-resource";
-import {updatePostThunk} from "../thunks/update-post-thunk";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { PostResource } from '../../api/resources/post-resource';
+
+import { updatePostThunk } from '../thunks/update-post-thunk';
 
 interface PostModalReducerState {
   /*
@@ -26,13 +28,13 @@ const updatePostModalReducerState: PostModalReducerState = {
   post: null,
   validationErrors: {},
   error: null,
-}
+};
 
 const updatePostModalSlice = createSlice({
   name: 'updatePostModalSlice',
   initialState: updatePostModalReducerState,
   reducers: {
-    openModal: (state, action:PayloadAction<PostResource>) => {
+    openModal: (state, action: PayloadAction<PostResource>) => {
       state.isModalOpen = true;
       state.post = action.payload;
       state.error = null;
@@ -41,7 +43,7 @@ const updatePostModalSlice = createSlice({
     closeModal: (state) => {
       state.isModalOpen = false;
       state.post = null;
-    }
+    },
   },
   extraReducers: builder => {
     builder
@@ -52,9 +54,9 @@ const updatePostModalSlice = createSlice({
       .addCase(updatePostThunk.rejected, (state, action: PayloadAction<any>) => {
         state.validationErrors = action.payload?.validationErrors;
         state.error = action.payload?.error;
-      })
-  }
-})
+      });
+  },
+});
 
 export const updatePostModalReducer = updatePostModalSlice.reducer;
 export const updatePostModalActions = updatePostModalSlice.actions;

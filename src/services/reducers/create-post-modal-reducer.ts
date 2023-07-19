@@ -1,5 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {createPostThunk} from "../thunks/create-post-thunk";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { createPostThunk } from '../thunks/create-post-thunk';
 
 interface PostModalReducerState {
   /*
@@ -19,8 +20,8 @@ interface PostModalReducerState {
 const postModalReducerState: PostModalReducerState = {
   isModalOpen: false,
   validationErrors: {},
-  error: null
-}
+  error: null,
+};
 
 const createPostModalSlice = createSlice({
   name: 'postModalSlice',
@@ -31,7 +32,7 @@ const createPostModalSlice = createSlice({
     },
     closeModal: (state) => {
       state.isModalOpen = false;
-    }
+    },
   },
   extraReducers: builder => {
     builder
@@ -42,9 +43,9 @@ const createPostModalSlice = createSlice({
       .addCase(createPostThunk.rejected, (state, action: PayloadAction<any>) => {
         state.validationErrors = action.payload?.validationErrors;
         state.error = action.payload?.error;
-      })
-  }
-})
+      });
+  },
+});
 
 export const createPostModalReducer = createPostModalSlice.reducer;
 export const createPostModalActions = createPostModalSlice.actions;

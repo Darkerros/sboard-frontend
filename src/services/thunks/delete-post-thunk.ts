@@ -1,6 +1,6 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import { deletePost } from "../../api/post-api/post-api";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { deletePost } from '../../api/post-api/post-api';
 
 export const deletePostThunk = createAsyncThunk(
   'deletePostThunk',
-  async (postId: number, {rejectWithValue}) => (await deletePost(postId)))
+  async (postId: number, { rejectWithValue }) => (await deletePost(postId)));

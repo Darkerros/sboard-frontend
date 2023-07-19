@@ -1,6 +1,8 @@
-import {UserResource} from "../../api/resources/user-resource";
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {checkAuthThunk} from "../thunks/check-auth-thunk";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { UserResource } from '../../api/resources/user-resource';
+
+import { checkAuthThunk } from '../thunks/check-auth-thunk';
 
 interface UserReducerState {
   /*
@@ -20,8 +22,8 @@ interface UserReducerState {
 const userReducerState: UserReducerState = {
   user: null,
   isLoading: false,
-  isError: false
-}
+  isError: false,
+};
 
 const userSlice = createSlice({
   name: 'userSlice',
@@ -29,7 +31,7 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action: PayloadAction<UserResource | null>) => {
       state.user = action.payload;
-    }
+    },
   },
   extraReducers: builder => {
     builder
@@ -37,16 +39,16 @@ const userSlice = createSlice({
         state.isLoading = true;
         state.isError = false;
       })
-      .addCase(checkAuthThunk.fulfilled, (state, action:PayloadAction<UserResource>) => {
+      .addCase(checkAuthThunk.fulfilled, (state, action: PayloadAction<UserResource>) => {
         state.isLoading = false;
         state.user = action.payload;
       })
       .addCase(checkAuthThunk.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
-      })
-  }
-})
+      });
+  },
+});
 
 export const userReducer = userSlice.reducer;
 export const userActions = userSlice.actions;

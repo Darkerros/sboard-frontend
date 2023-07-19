@@ -1,9 +1,11 @@
-import {PostResource} from "../../api/resources/post-resource";
-import {createSlice} from "@reduxjs/toolkit";
-import {getPostsThunk} from "../thunks/get-post-thunk";
-import {getPostsNextPage} from "../thunks/get-posts-next-page";
-import {deletePostThunk} from "../thunks/delete-post-thunk";
-import {updatePostThunk} from "../thunks/update-post-thunk";
+import { createSlice } from '@reduxjs/toolkit';
+
+import { PostResource } from '../../api/resources/post-resource';
+
+import { getPostsThunk } from '../thunks/get-post-thunk';
+import { getPostsNextPage } from '../thunks/get-posts-next-page';
+import { deletePostThunk } from '../thunks/delete-post-thunk';
+import { updatePostThunk } from '../thunks/update-post-thunk';
 
 interface PostsReducerState {
   posts: PostResource[];
@@ -18,8 +20,8 @@ const postsReducerState: PostsReducerState = {
   pagesCount: 0,
   postsCount: 0,
   currentPage: 1,
-  isHaveNextPage: false
-}
+  isHaveNextPage: false,
+};
 
 const postsSlice = createSlice({
   name: 'postsSlice',
@@ -45,9 +47,9 @@ const postsSlice = createSlice({
       .addCase(updatePostThunk.fulfilled, (state, action) => {
         const postUpdateIndex = state.posts.findIndex(post => post.id === action.payload.id);
         state.posts.splice(postUpdateIndex, 1, action.payload);
-      })
-  }
-})
+      });
+  },
+});
 
 export const postsReducer = postsSlice.reducer;
 export const postsActions = postsSlice.actions;

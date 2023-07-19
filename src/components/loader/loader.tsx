@@ -1,9 +1,10 @@
 import React from 'react';
 import {keyframes, styled} from "styled-components";
+
 import LoaderIcon from "../../ui/icon/loader-icon/loader-icon";
 
 const SpinAnimation = keyframes`
-  0 % {
+  0% {
     & {
       transform: rotate(0deg);
     }

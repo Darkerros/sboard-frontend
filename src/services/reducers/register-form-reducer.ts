@@ -1,5 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {registrateUserThunk} from "../thunks/registrate-user-thunk";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { registrateUserThunk } from '../thunks/registrate-user-thunk';
 
 interface RegisterFormReducerState {
   /*
@@ -15,7 +16,7 @@ interface RegisterFormReducerState {
 const registerFormReducerState: RegisterFormReducerState = {
   validationErrors: {},
   error: null,
-}
+};
 
 const registerFormSlice = createSlice({
   name: 'registerFormReducer',
@@ -30,9 +31,9 @@ const registerFormSlice = createSlice({
       .addCase(registrateUserThunk.rejected, (state, action: PayloadAction<any>) => {
         state.validationErrors = action.payload?.validationErrors;
         state.error = action.payload?.registerError;
-      })
-  }
-})
+      });
+  },
+});
 
 export const registerFormReducer = registerFormSlice.reducer;
 export const registerFormActions = registerFormSlice.actions;

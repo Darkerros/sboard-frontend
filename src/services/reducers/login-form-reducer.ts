@@ -1,5 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {loginUserThunk} from "../thunks/login-user-thunk";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { loginUserThunk } from '../thunks/login-user-thunk';
 
 interface LoginFormReducerState {
   /*
@@ -15,7 +16,7 @@ interface LoginFormReducerState {
 const loginFormReducerState: LoginFormReducerState = {
   validationErrors: {},
   error: null,
-}
+};
 
 const loginFormSlice = createSlice({
   name: 'loginFormReducer',
@@ -30,9 +31,9 @@ const loginFormSlice = createSlice({
       .addCase(loginUserThunk.rejected, (state, action: PayloadAction<any>) => {
         state.validationErrors = action.payload?.validationErrors;
         state.error = action.payload?.registerError;
-      })
-  }
-})
+      });
+  },
+});
 
 export const loginFormReducer = loginFormSlice.reducer;
 export const loginFormActions = loginFormSlice.actions;

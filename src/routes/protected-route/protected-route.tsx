@@ -1,7 +1,9 @@
 import React, { FC, ReactNode } from 'react';
-import {useAppSelector} from "../../hooks/use-app-selector";
-import {Navigate} from "react-router-dom";
-import Loader from "../../components/loader/loader";
+import { Navigate } from 'react-router-dom';
+
+import { useAppSelector } from '../../hooks/use-app-selector';
+
+import Loader from '../../components/loader/loader';
 
 interface ProtectedRouteProps {
   /*
@@ -18,18 +20,18 @@ interface ProtectedRouteProps {
   children: ReactNode;
 }
 
-const ProtectedRoute:FC<ProtectedRouteProps> = ({needAuth, redirectUrl, children}) => {
-  const {isError, user} = useAppSelector(state => state.user)
+const ProtectedRoute: FC<ProtectedRouteProps> = ({ needAuth, redirectUrl, children }) => {
+  const { isError, user } = useAppSelector(state => state.user);
 
   if (!user && !isError) {
-    return (<Loader/>)
+    return (<Loader />);
   }
 
   if ((!user && !needAuth) || (user && needAuth) || (isError && !needAuth)) {
-    return (<>{children}</>)
+    return (<>{children}</>);
   }
 
-  return (<Navigate to={redirectUrl}/>)
+  return (<Navigate to={redirectUrl} />);
 };
 
 export default ProtectedRoute;
